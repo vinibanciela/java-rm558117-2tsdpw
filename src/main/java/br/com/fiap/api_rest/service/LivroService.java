@@ -4,7 +4,13 @@ import br.com.fiap.api_rest.dto.LivroRequest;
 import br.com.fiap.api_rest.dto.LivroRequestDTO;
 import br.com.fiap.api_rest.dto.LivroResponse;
 import br.com.fiap.api_rest.model.Livro;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LivroService {
@@ -25,4 +31,13 @@ public class LivroService {
     public LivroResponse livroToResponse(Livro livro) {
         return new LivroResponse(livro.getAutor() + " - " + livro.getTitulo());
     }
+
+    public List<LivroResponse> LivrostoResponse(List<Livro> Livros) {
+        List<LivroResponse> listaLivros = new ArrayList<>();
+        for (Livro livro : livros) {
+            listaLivros.add(livroToResponse(livro));
+        }
+        return listaLivros;
+    }
+
 }
