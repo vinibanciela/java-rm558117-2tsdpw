@@ -25,4 +25,9 @@ public class LivroService {
     public LivroResponse livroToResponse(Livro livro) {
         return new LivroResponse(livro.getAutor() + " - " + livro.getTitulo());
     }
+
+    public Page<LivroResponse> findAll(Pageable pageable) {
+        return livroRepository.findAll(pageable).map(this::livroToResponse);
+    }
 }
+

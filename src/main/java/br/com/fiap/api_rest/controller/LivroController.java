@@ -33,7 +33,8 @@ public class LivroController {
 
     @GetMapping
     public ResponseEntity<List<LivroResponse>> readLivros() {
-        List<Livro> livros = livroRepository.findAll();
+        Pageable pageable = PageRequest.of(pageNumber: 0, pageSize: 2, Sort.by(...properties:"") )
+        List<Livro> livros = livroRepository.findAll(pageable);
         List<LivroResponse> listaLivros = new ArrayList<>();
         for (Livro livro : livros) {
             listaLivros.add(livroService.livroToResponse(livro));
