@@ -26,14 +26,15 @@ public class LivroController {
     // POST, GET, PUT, DELETE
 
     @PostMapping
-    public ResponseEntity<Livro> createLivro(@RequestBody LivroRequest livro) {
+    public ResponseEntity<Livro> createLivro(@Valid @RequestBody LivroRequest livro) {
         Livro livroSalvo = livroRepository.save(livroService.requestToLivro(livro));
         return new ResponseEntity<>(livroSalvo,HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<LivroResponse>> readLivros() {
-        Pageable pageable = PageRequest.of(pageNumber: 0, pageSize: 2, Sort.by(...properties:"") )
+        Pageable pageable = PageRequest
+                .of(pageNumber: 0, pageSize: 2, Sort.by(...properties:"titulo").ascending().and(sort.by) )
         List<Livro> livros = livroRepository.findAll(pageable);
         List<LivroResponse> listaLivros = new ArrayList<>();
         for (Livro livro : livros) {
