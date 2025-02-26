@@ -61,8 +61,12 @@ public class LivroController {
         if (livroExistente.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        livro.setId(livroExistente.get().getId());
-        Livro livroSalvo = livroRepository.save(livro);
+        LivroResponse livroResponse = livroService.livrotoResponse(livro.get());
+        livroResponse.setLink(
+                linkTo
+                        metgodOn(LivroController.class)
+                                        readLivros(pageNumber:0)
+                ).withRel("Lista de Livros")
         return new ResponseEntity<>(livroSalvo,HttpStatus.CREATED);
     }
 
