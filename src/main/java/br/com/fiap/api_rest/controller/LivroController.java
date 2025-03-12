@@ -25,6 +25,14 @@ public class LivroController {
     // CREATE, READ, UPDATE, DELETE
     // POST, GET, PUT, DELETE
 
+
+    @RestController
+    @RequestMapping (value = "/livros")
+    tag name
+    public class Livro Controller
+
+
+
     @PostMapping
     public ResponseEntity<Livro> createLivro(@Valid @RequestBody LivroRequest livro) {
         Livro livroSalvo = livroRepository.save(livroService.requestToLivro(livro));
