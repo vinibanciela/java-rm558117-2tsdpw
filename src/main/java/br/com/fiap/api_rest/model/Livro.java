@@ -15,6 +15,8 @@ public class Livro {
     private int preco;
     private Categoria categoria;
     private String isbn;
+    private boolean ebook;
+    private Date dataLançamento;
 
     public Long getId() {
         return id;
