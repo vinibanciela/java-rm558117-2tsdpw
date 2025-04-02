@@ -1,19 +1,28 @@
+package br.com.fiap.api_rest.model;
+
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 public class Autor {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
-
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "autor_livro",
+            joinColumns = @JoinColumn(name = "id_livro", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_autor", referencedColumnName = "id"))
     private List<Livro> livros;
 
-    // Getters e Setters
+    public Autor() {
+    }
+
+    public Autor(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }
